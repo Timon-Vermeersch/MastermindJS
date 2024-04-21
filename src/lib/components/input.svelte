@@ -1,16 +1,19 @@
 <script>
-    let name = '';
-    /**
-     * @type {any}
-     */
+    import { createEventDispatcher } from 'svelte';
+    
     export let colors;
-    let selectedColors = Array(4).fill(''); // Assuming 4 inputs for simplicity
-    function setColor(index, color) {
-    selectedColors[index] = color;
+    export let selectedColors
+
+    const dispatch = createEventDispatcher();
+
+    let name = '';
+
+    function setColor(index, color){
+      selectedColors[index] = color;
   }
-  function handleCheck(){
-      console.log(selectedColors)
-    }
+    function handleCheck(){
+      dispatch('check');
+  }
 </script>
 <style>
 
