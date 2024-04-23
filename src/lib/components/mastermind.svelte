@@ -69,21 +69,7 @@ function handleCheck() {
     }
 }
 
-function transformGuess (attempt,solution,difficulty) {
-    let checked = Array(difficulty).fill('');
-    for (let i = 0; i < attempt.length; i++) {
-        if(solution.includes(attempt[i]) && attempt[i] !== solution[i]){
-            checked[i] = 'vraagteken'
-        }
-        else if(solution.includes(attempt[i]) && attempt[i] === solution[i]){
-            checked[i] = 'checkmark'
-        }
-        else if(!solution.includes(attempt[i])){
-            checked[i] = 'kruisje'
-        }
-    }
-    return checked
-}
+
 
 
 function arraysEqual(a, b) {

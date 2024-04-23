@@ -1,7 +1,9 @@
 <script>
-    import { LOGONSERVER } from '$env/static/private';
+   
     import { createEventDispatcher } from 'svelte';
-
+    import Checkmark from './checkmark.svelte';
+    import QuestionMark from './questionMark.svelte';
+    import Cross from './cross.svelte';
     export let attempts;
     export let showResults;
     export let correctColors;
@@ -9,6 +11,24 @@
     
     
     const dispatch = createEventDispatcher();
+
+    function transformGuess (attempt,solution,difficulty) {
+    let checked = Array(difficulty).fill('');
+    for (let i = 0; i < attempt.length; i++) {
+        if(solution.includes(attempt[i]) && attempt[i] !== solution[i]){
+            checked[i] = 'vraagteken'
+        }
+        else if(solution.includes(attempt[i]) && attempt[i] === solution[i]){
+            checked[i] = 'checkmark'
+        }
+        else if(!solution.includes(attempt[i])){
+            checked[i] = 'kruisje'
+        }
+
+    }
+    console.log('checked',checked)
+    return checked
+}
 
 </script>
 
@@ -54,6 +74,22 @@
     background-color: aquamarine;
     width: 20%;
 }
+.flex{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: flex-end;
+
+}
+
+.flexrow{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 0.5rem;
+
+}
+
 </style>
 
 <div id=main>
@@ -73,7 +109,24 @@
     </div>
 
 
-    <div id=check>
+        <div id=check class='flex'>
+            {#each attempts as attempt}
+            <div class='flexrow'>
+                {#each transformGuess(attempt,correctColors,difficulty) as transformedGuess}
+                        {#if transformedGuess === 'vraagteken'}   
+                            <span><QuestionMark/></span>
+                        {/if}
+                        {#if transformedGuess === 'kruisje'}   
+                            <span><Cross/></span>
+                        {/if}
+                        {#if transformedGuess === 'checkmark'}   
+                            <span><Checkmark/></span>
+                        {/if}
 
-    </div>
+                        
+                        
+                    {/each}
+                </div>
+            {/each}
+        </div>
 </div>
