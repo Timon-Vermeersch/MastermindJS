@@ -9,7 +9,7 @@
         height: 100%;
     }
     #main{
-        background-color: rgb(137, 67, 103);
+        background-color: #249CDB;
         height: 100%;
         width: 100%;
         overflow: auto;

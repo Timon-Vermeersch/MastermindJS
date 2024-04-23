@@ -84,7 +84,7 @@ function arraysEqual(a, b) {
 </script>
 <style>
     #main{
-        background-color: rgb(236, 170, 170);
+        background-color: #24bddb;
         height: 90vh;
         width: 65vw;
         border-radius: 16px;

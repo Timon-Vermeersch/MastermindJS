@@ -4,10 +4,15 @@
     import Checkmark from './checkmark.svelte';
     import QuestionMark from './questionMark.svelte';
     import Cross from './cross.svelte';
+    
+
     export let attempts;
     export let showResults;
     export let correctColors;
     export let difficulty
+
+    const BLUE = '#2cbad3'
+    const RED = '#D3452C'
     
     
     const dispatch = createEventDispatcher();
@@ -35,7 +40,7 @@
 <style>
 
 #main{
-    background-color: rgb(150, 175, 177);
+    background-color: #DB6324;
     padding: 0.5rem;
     margin: 0.5rem;
     height: 70%;
@@ -52,7 +57,8 @@
     border: 1px solid rgba(255, 255, 255, 0.13);
 }
 #playingfield{
-    background-color: rgb(188, 195, 195);
+    background-color: #ABE4A1;
+    background-image: url(../static/woodpattern.png);
     width: 80%;
     display: flex;
     flex-direction: column;
@@ -61,7 +67,7 @@
     align-items: center;
 }
 .attempt {
-    width: 80%;
+    width: 100%;
     display: flex;
     justify-content: space-around;
     border-top: 2px solid #ccc;
@@ -71,13 +77,12 @@
     
 }
 #check{
-    background-color: aquamarine;
+    background-color: #ABE4A1;
     width: 20%;
 }
 .flex{
     display: flex;
     flex-direction: column;
-    gap: 1rem;
     justify-content: flex-end;
 
 }
@@ -86,7 +91,11 @@
     display: flex;
     flex-direction: row;
     gap: 1rem;
-    padding: 0.5rem;
+    padding:1.42rem;
+    justify-content: center;
+    border-top: rgb(113, 112, 112) solid 1px
+    
+
 
 }
 

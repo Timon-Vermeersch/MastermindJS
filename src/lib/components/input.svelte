@@ -16,7 +16,7 @@
   }
 </script>
 <style>
-
+/* font-family: "JetBrains Mono",monospace; */
 #main{
     background-color: rgb(150, 175, 177);
     padding: 0.5rem;
@@ -34,19 +34,65 @@
     border: 1px solid rgba(255, 255, 255, 0.13);
     
 }
+.check{
+  align-items: center;
+  background-color: #8391dc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  justify-content: center;
+  line-height: 1;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  transition: box-shadow .15s,transform .15s;
+  font-size: clamp(1rem);
+  
+  
+}
+select {
+    width: auto; 
+    padding: 8px;
+    margin: 1px;
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    background-color: white; 
+    cursor: pointer; 
+    font-family: Arial, sans-serif; 
+    font-size: clamp(14px); 
+    height: 80%;
+  }
+  select:focus {
+    outline: none; /* Removes default focus outline */
+    border-color: #0056b3; /* Blue border when focused */
+    
+  }
+  option {
+    display: flex;
 
+    padding: 8px; /* Padding for each option */
+    background-color: #f8f9fa; /* Light background for options */
+  }
+  #input{
+    display: flex;
+    align-items: center;
+  }
 </style>
 
 <div id="main">
     {#each selectedColors as color, index}
-      <div>
-            <select bind:value={selectedColors[index]} on:change={() => setColor(index, selectedColors[index])}>
+      <div id="input">
+            <select style = "background-color: {selectedColors[index]}"bind:value={selectedColors[index]} on:change={() => setColor(index, selectedColors[index])}>
             <option value="">Select a color</option>
             {#each colors as color}
                 <option value={color}>{color}</option>
             {/each}
             </select>
-            <div style="background-color: {selectedColors[index]}; max-width: 50px; height: 50px; border-radius: 50%; margin-top: 10px;"></div>
+            <!-- <div style="background-color: {selectedColors[index]}; max-width: 50px; height: 50px; border-radius: 50%; margin-top: 10px;"></div> -->
       </div>
     {/each}
     <button class=check on:click={handleCheck}>check!</button>

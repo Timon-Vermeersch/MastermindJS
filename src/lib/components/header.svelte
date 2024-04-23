@@ -27,12 +27,13 @@
 <style>
 
 #main{
-    background-color: rgb(150, 175, 177);
+    background-color: #ABE4A1;
     padding: 0.5rem;
     margin: 0.5rem;
     height: 10%;
     display: flex;
-    font-size: 3rem;
+    font-size: clamp(3rem);
+    font-family: "JetBrains Mono",monospace;
     
 
     /* glass */
@@ -69,6 +70,29 @@
     display: flex;
     justify-content: center;
 }
+.check{
+  align-items: center;
+  background-color: #8390dc39;
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  justify-content: center;
+  line-height: 1;
+  overflow: hidden;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  position: relative;
+  text-align: left;
+  transition: box-shadow .15s,transform .15s;
+  
+  height: 4rem;
+  
+
+}
+  
+  
 </style>
 
 <div id=main>
@@ -77,7 +101,7 @@
 
     <div id = gameSettings>
         <div id= difftitle>Choose difficulty</div>
-        <select bind:value = {selectedOption}>
+        <select class=check bind:value = {selectedOption}>
             {#each difficultyOptions as option}
                 <option value = {option}> {option} </option>
             {/each}
