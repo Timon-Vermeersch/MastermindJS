@@ -65,6 +65,8 @@
     overflow-y: scroll;
     justify-content: flex-end;
     align-items: center;
+    border-radius: inherit;
+
 }
 .attempt {
     width: 100%;
@@ -75,10 +77,15 @@
     
     
     
+    
 }
 #check{
     background-color: #ABE4A1;
     width: 20%;
+    
+    border-top-right-radius: inherit;
+    border-bottom-right-radius: inherit;
+
 }
 .flex{
     display: flex;

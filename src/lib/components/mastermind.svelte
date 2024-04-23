@@ -1,11 +1,12 @@
 <script >
-    
+import { flip } from 'svelte/animate';
 import Field from '$lib/components/field.svelte';
 import Input from '$lib/components/input.svelte';
 import Header from '$lib/components/header.svelte';
 import Alert from './alert.svelte';
+import YouWin from './youWin.svelte';
 
-
+let newGameBool = false
 let attempts = [];
 let selectedColors = Array(4).fill('');
 let colors = ['red', 'blue', 'green', 'yellow', 'purple', 'orange'];
@@ -14,7 +15,20 @@ let showResults = false;
 let correctColors = [];
 let showAlert = false
 let alertMessage = ''
+let youWin = false
 
+$: if (newGameBool) {
+    setTimeout(() => {
+      newGameBool = false;
+    }, 3000); // Change '3000' to however many milliseconds you want
+  }
+
+function newGameAlert(){
+    
+    newGameBool = true;
+    alertMessage = 'Fresh Game Started 101';
+    
+}
 
 function newCorrectColors(difficulty) {
     correctColors = []; 
@@ -28,13 +42,28 @@ function newCorrectColors(difficulty) {
     }
     console.log(correctColors);
 }
+function newWin(){
+    
+    let difficultyLevel = 4
+    console.log(difficultyLevel)
+    console.log(`Starting new game with difficulty: ${difficultyLevel}`);
+    difficulty = difficultyLevel;
+    showResults = false;
+    showAlert = false;
+    alertMessage = '';
+    newCorrectColors(difficultyLevel);
+    selectedColors = Array(difficultyLevel).fill('');
+    
+
+     
+
+}
 
 function newGame(event){
     console.log(event)
     let difficultyLevel = event.detail.difficulty;
     console.log(difficultyLevel)
     console.log(`Starting new game with difficulty: ${difficultyLevel}`);
-
     attempts = [];
     difficulty = difficultyLevel;
     showResults = false;
@@ -42,7 +71,10 @@ function newGame(event){
     alertMessage = '';
     newCorrectColors(difficultyLevel)
     selectedColors = Array(difficultyLevel).fill('');
+    newGameAlert()
+    
 
+    
      
 
 }
@@ -57,6 +89,10 @@ function handleCheck() {
         attempts = [newAttempt, ...attempts];
         showResults = true;
         console.log('you win');
+        youWin = true
+        
+
+
     } else {
         const newAttempt = [...selectedColors];
         console.log(selectedColors);
@@ -66,6 +102,7 @@ function handleCheck() {
         selectedColors.fill('');
         console.log(attempts);
         showAlert = false;
+        newGameBool = false
     }
 }
 
@@ -105,8 +142,28 @@ function arraysEqual(a, b) {
     on:newGame={newGame}/>
     <Field {attempts} {showResults} {correctColors} {difficulty}/>
     <Input {colors} {selectedColors} on:check={handleCheck}/>
+    
+    {#if youWin}
+    <YouWin close={() => youWin = false}/>
+    {/if}
+
+
 </div>
 
 {#if showAlert}
 <Alert message={alertMessage}/>
 {/if}
+
+
+{#if newGameBool}
+<Alert message={'fresh game started'}/>
+{/if}
+
+
+
+
+
+
+
+
+

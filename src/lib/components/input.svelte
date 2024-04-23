@@ -23,7 +23,8 @@
     margin: 0.5rem;
     height: 15%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    
 
     /* glass */
     background: rgba(252, 252, 252, 0.08);
@@ -51,6 +52,8 @@
   text-align: left;
   transition: box-shadow .15s,transform .15s;
   font-size: clamp(1rem);
+  width: 7rem;
+  height: 7rem;
   
   
 }
@@ -67,15 +70,15 @@ select {
     height: 80%;
   }
   select:focus {
-    outline: none; /* Removes default focus outline */
-    border-color: #0056b3; /* Blue border when focused */
+    outline: none; 
+    border-color: #0056b3; 
     
   }
   option {
     display: flex;
 
-    padding: 8px; /* Padding for each option */
-    background-color: #f8f9fa; /* Light background for options */
+    padding: 8px; 
+    background-color: #f8f9fa; 
   }
   #input{
     display: flex;
