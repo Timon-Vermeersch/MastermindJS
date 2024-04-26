@@ -11,8 +11,7 @@
     export let correctColors;
     export let difficulty
 
-    const BLUE = '#2cbad3'
-    const RED = '#D3452C'
+
     
     
     const dispatch = createEventDispatcher();

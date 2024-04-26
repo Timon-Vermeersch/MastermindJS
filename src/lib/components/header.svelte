@@ -2,14 +2,18 @@
     import { createEventDispatcher } from 'svelte';
     import Alert from './alert.svelte';
     export let startGame
-    let difficultyOptions = [4 , 5 , 6]
+    // let difficultyOptions = [4 , 5 , 6]
     let selectedOption = ''
     let alertNewGame = false
 
 
 
     const dispatch = createEventDispatcher();
-
+    const difficulty = {
+        Easy: 4,
+        Medium: 5,
+        Hard: 6
+    };
     function handleNewGame() {
     if (selectedOption) {
         // dispatch('newGame', { detail: { difficulty: selectedOption } });
@@ -52,10 +56,11 @@
     
     width: 80%;
     justify-content: space-around;
+    align-items: center;
     
 }
 #gameSettings{
-    padding: 1rem;
+    padding: 0.2rem;
     display: flex;
     width: 20%;
     font-size: 1rem;
@@ -102,8 +107,8 @@
     <div id = gameSettings>
         <div id= difftitle>Choose difficulty</div>
         <select class=check bind:value = {selectedOption}>
-            {#each difficultyOptions as option}
-                <option value = {option}> {option} </option>
+            {#each Object.entries(difficulty) as [key,value]}
+                <option value = {value}> {key} </option>
             {/each}
         </select>
         <button class=check on:click={handleNewGame}>Start New Game!</button>

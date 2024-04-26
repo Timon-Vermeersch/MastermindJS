@@ -52,8 +52,8 @@
   text-align: left;
   transition: box-shadow .15s,transform .15s;
   font-size: clamp(1rem);
-  width: 7rem;
-  height: 7rem;
+  max-width: 7rem;
+  max-height: 7rem;
   
   
 }

@@ -1,5 +1,6 @@
 <script >
 import { flip } from 'svelte/animate';
+import { onMount } from 'svelte';
 import Field from '$lib/components/field.svelte';
 import Input from '$lib/components/input.svelte';
 import Header from '$lib/components/header.svelte';
@@ -16,6 +17,10 @@ let correctColors = [];
 let showAlert = false
 let alertMessage = ''
 let youWin = false
+let opportunities = 5
+let amountTries = 0
+let gameOver = false
+
 
 $: if (newGameBool) {
     setTimeout(() => {
@@ -53,10 +58,6 @@ function newWin(){
     alertMessage = '';
     newCorrectColors(difficultyLevel);
     selectedColors = Array(difficultyLevel).fill('');
-    
-
-     
-
 }
 
 function newGame(event){
@@ -72,6 +73,10 @@ function newGame(event){
     newCorrectColors(difficultyLevel)
     selectedColors = Array(difficultyLevel).fill('');
     newGameAlert()
+    amountTries = 0
+
+    
+    
     
 
     
@@ -102,12 +107,21 @@ function handleCheck() {
         selectedColors.fill('');
         console.log(attempts);
         showAlert = false;
-        newGameBool = false
+        newGameBool = false;
+        console.log(amountTries)
+        amountTries +=1;
+        if(amountTries >= opportunities) {
+            gameOver = 1;
+            console.log('gameover')
+        }
+        
     }
 }
 
 
-
+onMount(() => {
+    newWin();  
+});
 
 function arraysEqual(a, b) {
     if (a.length !== b.length) return false;
@@ -144,8 +158,13 @@ function arraysEqual(a, b) {
     <Input {colors} {selectedColors} on:check={handleCheck}/>
     
     {#if youWin}
-    <YouWin close={() => youWin = false}/>
+        <YouWin close={() => youWin = false}/>
     {/if}
+
+    {#if gameOver}
+        <YouWin win_lose = {gameOver} close={() => gameOver = false}/>
+    {/if}
+
 
 
 </div>

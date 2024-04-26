@@ -2,6 +2,7 @@
     import { fade, fly } from 'svelte/transition';
     import { quintOut } from 'svelte/easing';
     export let close;
+    export let win_lose = false;
 </script>
 
 <style>
@@ -19,13 +20,25 @@
     }
     .modal-content {
         background: white url('/YOUWIN.png') no-repeat center center;
+        background-size: contain;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        position: relative;
+        width: 20rem;
+        height: 20rem;
+        color: #fff; 
+        
+    }
+    .modal-content2 {
+        background: white url('/YOULOSE.png') no-repeat center center;
         background-size: cover;
         padding: 20px;
         border-radius: 8px;
         box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         position: relative;
-        width: 80%;
-        height: 91%;
+        width: 20rem;
+        height: 20rem;
         color: #fff; 
         
     }
@@ -38,10 +51,12 @@
     }
 
     </style>
-<div in:fade={{ delay: 250, duration: 250 }} out:fade={{ duration: 250 }} class="modal">
-    <div class="modal-content" in:fly={{ y: -200, delay: 250, duration: 250, easing: quintOut }}>
+
+
+
+<div class="modal" in:fade={{ delay: 250, duration: 250 }} out:fade={{ duration: 250 }}>
+    <div class={win_lose ? 'modal-content2' : 'modal-content'} in:fly={{ y: -200, delay: 250, duration: 250, easing: quintOut }}>
         <span class="close" on:click={close}>&times;</span>
-        <!-- ...other modal content... -->
-        <button on:click={close}>Close</button>
+        
     </div>
 </div>
