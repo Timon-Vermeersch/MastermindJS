@@ -57,7 +57,7 @@
 }
 #playingfield{
     background-color: #ABE4A1;
-    background-image: url(../static/woodpattern.png);
+    
     width: 80%;
     display: flex;
     flex-direction: column;

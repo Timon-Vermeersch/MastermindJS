@@ -42,12 +42,14 @@
         color: #fff; 
         
     }
-    .close {
+    #close {
         position: absolute;
         top: 10px;
         right: 10px;
         cursor: pointer;
-        font-size: 24px;
+        font-size: 1rem;
+        height: 2rem;
+        width: 4rem;
     }
 
     </style>
@@ -56,7 +58,7 @@
 
 <div class="modal" in:fade={{ delay: 250, duration: 250 }} out:fade={{ duration: 250 }}>
     <div class={win_lose ? 'modal-content2' : 'modal-content'} in:fly={{ y: -200, delay: 250, duration: 250, easing: quintOut }}>
-        <span class="close" on:click={close}>&times;</span>
+        <button id='close' on:click = {close}>Close</button>
         
     </div>
 </div>

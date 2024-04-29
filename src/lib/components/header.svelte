@@ -106,12 +106,16 @@
 
     <div id = gameSettings>
         <div id= difftitle>Choose difficulty</div>
-        <select class=check bind:value = {selectedOption}>
+        <select  class=check bind:value = {selectedOption}>
+            <option value="" selected disabled hidden>Easy</option>
             {#each Object.entries(difficulty) as [key,value]}
                 <option value = {value}> {key} </option>
             {/each}
         </select>
         <button class=check on:click={handleNewGame}>Start New Game!</button>
     </div>
-</div>
 
+
+
+
+</div>

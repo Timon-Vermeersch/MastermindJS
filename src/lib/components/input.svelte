@@ -54,6 +54,7 @@
   font-size: clamp(1rem);
   max-width: 7rem;
   max-height: 7rem;
+  padding: 2rem;
   
   
 }
@@ -95,8 +96,22 @@ select {
                 <option value={color}>{color}</option>
             {/each}
             </select>
-            <!-- <div style="background-color: {selectedColors[index]}; max-width: 50px; height: 50px; border-radius: 50%; margin-top: 10px;"></div> -->
-      </div>
+          </div>
+          {/each}
+          <button class=check on:click={handleCheck}>check!</button>
+        </div> 
+
+        
+        
+        <!-- <div style="background-color: {selectedColors[index]}; max-width: 50px; height: 50px; border-radius: 50%; margin-top: 10px;"></div> -->
+        
+        <!-- 
+          <div>
+  {#each selectedColors as color, index} 
+  <div>
+    {#each setColor(index, color) as setColor}
+      <select ></select> 
     {/each}
-    <button class=check on:click={handleCheck}>check!</button>
-</div>
+  </div>
+  {/each}
+</div> -->
